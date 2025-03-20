@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@wladuwko @serveraid</title>
+    <style>
+
+
+        @font-face {
+  font-family: 'MyCustomFont';
+  src: url('/fonts/PixelizerBold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+      /* Определяем CSS переменные */
+:root {
+  --global-margin: 10px;  /* Уменьшенный margin */
+  --global-padding: 10px;   /* Уменьшенный padding */
+  --global-scale: 0.1;    /* Общий масштаб (0.8 = 80%) */
+}
+
+body {
+      font-family: 'MyCustomFont', sans-serif;
+      background-color: black;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 100vh; /* Используем min-height, чтобы содержимое занимало всю высоту */
+      margin: 0;
+
+    }
+
+    #container {
+      text-align: center;
+      padding: 1px;
+  display: flex; /* Включаем Flexbox для контейнера */
+  justify-content: space-between; /* Распределяем элементы по краям */
+  align-items: center; /* Выравниваем элементы по вертикали (по центру) */
+display: flex;
+  flex-direction: column; /* Располагаем элементы в колонку */
+  align-items: center;     /* Центрируем по горизонтали */
+    }
+
+    #dynamicText {
+      font-size: clamp(32px, 8vw, 64px);
+  margin-bottom: 5px;
+margin-top: 20px;
+  padding: 5px; /*  Чтобы был виден внутренний отступ */
+    }
+
+#designedbywladuwko {
+      font-size: clamp(8px, 2vw, 16px);
+  margin-bottom: 10px;
+  text-align: center;
+
+  padding: 5px; /*  Чтобы был виден внутренний отступ */
+    }
+
+    #wladuwkoText {
+      font-size: clamp(24px, 6vw, 48px);
+  margin-bottom: 10px;
+  text-align: center;
+
+  padding: 5px; /*  Чтобы был виден внутренний отступ */
+    }
+
+    .taplink-button {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: transparent;
+      color: white;
+      text-decoration: none;
+      border: 2px solid white;
+      border-radius: 0;
+      transition: border-color 0.3s ease, color 0.3s ease;
+      font-size: clamp(18px, 4vw, 32px);  /* Адаптивный размер шрифта для кнопок */
+      margin-bottom: 20px;
+    }
+
+    .taplink-button:hover {
+      border-color: #ddd;
+      color: #ddd;
+    }
+
+    #serveraidText {
+      font-size: clamp(24px, 6vw, 48px);
+    }
+
+    /* Адаптация для маленьких экранов (телефоны) */
+    @media (max-width: 480px) {
+      /* Здесь можно переопределить стили для мобильных устройств */
+      #dynamicText {
+        font-size: clamp(20px, 8vw, 40px); /* Больше шрифт на телефонах */
+         margin-bottom: 1px;
+margin-top: 20px;
+  padding: 5px; /*  Чтобы был виден внутренний отступ */
+      }
+    #wladuwkoText {
+      font-size: clamp(12px, 5vw, 32px);
+      margin-bottom: 5px;
+  text-align: center;
+
+  padding: 5px; /*  Чтобы был виден внутренний отступ */
+    }
+    #designedbywladuwko {
+      font-size: clamp(8px, 2vw, 16px);
+  margin-bottom: 10px;
+  text-align: center;
+
+  padding: 5px; /*  Чтобы был виден внутренний отступ */
+    }
+      .taplink-button {
+        font-size: clamp(16px, 5vw, 28px); /* Больше шрифт для кнопок на телефонах */
+      }
+    }
+
+    /* Адаптация для планшетов */
+    @media (min-width: 768px) and (max-width: 991px) {
+       #dynamicText {
+        font-size: clamp(48px, 10vw, 80px);
+      }
+    }
+
+    #pidor {
+  display: flex; /* Включаем Flexbox для контейнера */
+  justify-content: space-between; /* Распределяем элементы по краям */
+  align-items: center; /* Выравниваем элементы по вертикали (по центру) */
+}
+
+    </style>
+</head>
+<body>
+
+
+<div id="container">
+<div id="dynamicText"></div>
+</div>
+
+    <div id="wladuwkoText"></div>
+    <a href="https://taplink.cc/wladuwko" target="_blank" class="taplink-button">
+        taplink wladuwko
+    </a>
+
+
+    <div id="serveraidText"></div>
+    <a href="https://taplink.cc/serveraid" target="_blank" class="taplink-button">
+        taplink serveraid
+    </a>
+
+
+<div id="designedbywladuwko"></div>
+
+<script th:inline="javascript">
+
+const textToType = "WLADUWKO BIO";
+
+        const dynamicTextElement = document.getElementById("dynamicText");
+        const dynamicWladuwkoTextElement = document.getElementById("wladuwkoText");
+        const dynamicServeraidTextElement = document.getElementById("serveraidText");
+
+        dynamicWladuwkoTextElement.innerHTML = "<br>base:<br>имя: Влад<br>возраст: 18<br>псевдоним: wladuwko(владувко)<br>hard skills:<br>fullstack web разработка<br>android разработка<br>организация концертов<br><br>experience:<br>4 month -> riderscombat(tgapp clicker)<br>3 month -> здесь и сейчас(tgapp maps)<br>10+ month -> телеграм проекты(tg chanells)<br><br>projects:<br>тгк заброшки москвы и мо<br>тгк подслушано крыши москвы<br>тгк архиватор заброшки москвы<br>тгк подслушано убежища москвы<br>тгк боже храни escape<br><br>achievements: <br>tg up: 17.8к -> 100к<br>work: 1к$+/month<br>secret web3 domain<br><br>открыт на любое сотрудничество<br>есть много инструментов и связей.<br>                связаться по кнопке ниже<br><br>";
+        dynamicServeraidTextElement.innerHTML = "textToServeraid";
+        designedbywladuwko.innerHTML = "designed by wladuwko";
+
+
+        let index = 0;
+        const delay = 50;
+        let isComplete = false;
+        let timeoutId;
+        let charsToRemove;
+
+        console.log("dynamicTextElement:", dynamicTextElement);
+
+        function getRandomDelay() {
+            return Math.floor(Math.random() * 3000) + 1000;
+        }
+
+        function removeText() {
+            if (!isComplete) {
+                return;
+            }
+
+            if (charsToRemove > 0) {
+                dynamicTextElement.textContent = dynamicTextElement.textContent.slice(0, dynamicTextElement.textContent.length - 1);
+                charsToRemove--;
+                setTimeout(removeText, 50);
+            } else {
+                // Сбрасываем индекс на длину имеющегося текста
+                index = dynamicTextElement.textContent.length;
+                setTimeout(addMissingLetters, 1000);
+            }
+        }
+
+        function addMissingLetters() {
+            if (dynamicTextElement.textContent.length < textToType.length) {
+                dynamicTextElement.textContent = textToType.substring(0, dynamicTextElement.textContent.length + 1);
+                setTimeout(addMissingLetters, delay);
+            } else {
+                isComplete = false;
+                // После добавления всех букв сразу же запускаем удаление
+                setTimeout(()=> {
+                    charsToRemove = Math.floor(textToType.length * Math.random()); // Определяем количество символов для удаления
+                    isComplete = true; // Важно! Разрешаем удаление
+                    removeText(); // Запускаем удаление
+                }, 2000);
+            }
+        }
+
+
+        function initialTypeText() {
+            if (!textToType) {
+                console.error("Text is empty or null. Stopping animation.");
+                return;
+            }
+
+            if (index < textToType.length) {
+                dynamicTextElement.textContent += textToType.charAt(index);
+                index++;
+                timeoutId = setTimeout(initialTypeText, delay);
+            } else {
+                // После завершения первоначальной печати, запускаем основной цикл
+                setTimeout(() => {
+                    isComplete = true;
+                    charsToRemove = Math.floor(textToType.length * Math.random());
+                    removeText();
+                }, 2000);
+
+            }
+        }
+
+        // Функция для создания случайной анимации мерцания для serveraidText
+        function createRandomFlickerAnimation(element) {
+    console.log('Анимация запущена');
+
+    const animationDuration = 0.5; // Очень быстрая анимация (0.5 секунды)
+    const keyframes = [];
+    let currentTime = 0;
+
+    // Создаем несколько очень быстрых мерцаний
+    while (currentTime < 1) {
+        const opacity = Math.random() > 0.5 ? 1 : 0; // Прозрачность: 1 или 0
+        const time = currentTime;
+        keyframes.push(`${time * 100}% { opacity: ${opacity}; }`);
+        currentTime += Math.random() * 0.2; // Быстрые шаги во времени
+         if (currentTime > 1) {
+          keyframes.pop();
+          keyframes.push(`100% { opacity: ${keyframes[keyframes.length - 1].split(': ')[1].slice(0, -2)}; }`);
+        }
+    }
+
+    const animationString = `flickerServeraid ${animationDuration}s linear`;
+    const keyframesString = `@keyframes flickerServeraid { ${keyframes.join(' ')} }`;
+
+    // Добавляем ключевые кадры и анимацию в стили
+    const styleSheet = document.createElement("style");
+    styleSheet.type = "text/css";
+    styleSheet.innerText = keyframesString;
+    document.head.appendChild(styleSheet);
+
+    function getRandomDelay() {
+        return Math.floor(Math.random() * 3) + 3; // Случайная задержка от 3 до 5 секунд
+    }
+
+    function toggleFlicker() {
+        // Удаляем анимацию (останавливаем мерцание)
+        element.style.animation = 'none';
+
+        // Ждем случайную задержку
+        const delay = getRandomDelay(); // Получаем случайную задержку
+        setTimeout(() => {
+            // Добавляем анимацию (запускаем мерцание)
+            element.style.animation = animationString;
+
+            // Запускаем следующую итерацию с новой случайной задержкой
+            setTimeout(toggleFlicker, (animationDuration * 1000)); // Задержка между анимациями
+        }, delay * 1000);
+    }
+
+    // Запускаем первую итерацию с задержкой
+    const initialDelay = getRandomDelay();
+    setTimeout(toggleFlicker, initialDelay * 1000);
+}
+
+
+        document.addEventListener("DOMContentLoaded", function() {
+            if (dynamicTextElement) {
+               initialTypeText();
+            } else {
+                console.error("Element with id 'dynamicText' not found.");
+            }
+
+            // Запускаем создание случайной анимации для serveraidText
+            console.log("Вызов createRandomFlickerAnimation");
+
+            wladuwkoTaplinkElement = document.getElementById("wladuwkoText"); // Инициализация
+            serveraidTaplinkElement = document.getElementById("serveraidText");  // Инициализация
+            createRandomFlickerAnimation(wladuwkoTaplinkElement);
+            createRandomFlickerAnimation(serveraidTaplinkElement);
+
+        });
+
+const serveraidDiv = document.getElementById('serveraidText');
+const serveraidLink = document.querySelector('a[href="https://taplink.cc/serveraid"]'); // Более надежно, чем getElementById, если id нет
+
+if (serveraidDiv) {
+    serveraidDiv.style.display = 'none'; // Скрыть div
+}
+
+if (serveraidLink) {
+     serveraidLink.style.display = 'none'; // Скрыть ссылку
+}
+
+
+    </script>
+
+</body>
+</html>
